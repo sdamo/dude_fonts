@@ -18,8 +18,14 @@ add name=SCHEDULE_FONTS on-event="/system script run SCRIPT_FONTS\r\
 
 /system script
 add dont-require-permissions=no name=SCRIPT_FONTS owner=sdamo policy=\
-    ftp,read,write,test source=":delay 10;\r\
+    ftp,read,write,test source=":local fontName \"arial\";\r\
     \n\r\
-    \n/tool fetch mode=ftp upload=no address=127.0.0.1 port=21 user=\"fonts\" \
-    password=\"password\" src-path=\"/fonts/arial.ttf\" dst-path=\"/dude/files/ar\
-    ial.ttf\" keep-result=yes;"
+    \n:delay 10;\r\
+    \n\r\
+    \n/tool fetch mode=ftp upload=no address=127.0.0.1 port=21 user=\"fonts\" pa\
+    ssword=\"password\" src-path=\"/fonts/\$fontName.ttf\" dst-path=\"/dude/file\
+    s/\$fontName.txt\" keep-result=yes;\r\
+    \n\r\
+    \n/tool fetch mode=ftp upload=no address=127.0.0.1 port=21 user=\"fonts\" pa\
+    ssword=\"password\" src-path=\"/fonts/\$fontName.ttf\" dst-path=\"/dude/file\
+    s/\$fontName.ttf\" keep-result=yes;"
